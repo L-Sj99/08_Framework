@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo Project 1</title>
+</head>
+<body>
+  <h2>Spring Boot 첫 수업 메인 페이지</h2>
+  <hr>
+  <h2 style="color:cornflowerblue">Spring Boot 프로젝트 실행 방법</h2>
+  <pre>
+    프로젝트 생성 시 자동으로 만들어지는 src/main/java폴더 아래 ~~~Application.java 파일을 실행
+    (~~~ : 프로젝트 이름)
+    - 실행 이유 : 해당 파일에는 main 메서드가 존재함
+      (main 메서드 : Java Application 실행용 메서드)
+    - 배포(인터넷 업로드) 가능 이유 : 프로젝트 내부에 내장된 Tomcat이 같이 startup 되면서 자동으로 프로젝트가 배포됨
+  </pre>
+  <hr>
+  <h3>프로젝트 구조</h3>
+  <ul>
+    <li>src/main/java : 자바 소스 코드를 모아두는 폴더</li>
+  
+    <li>
+      src/main/resources : 자바에서 사용할 자원, 설정 파일을 모아두는 폴더
+  
+      <ul>
+        <li>templates : Java 템플릿(응답 화면)을 모아두는 폴더(thymeleaf)</li>
+  
+        <li>static : templates에 적용될 정적 자원을 모아두는 폴더(JS, CSS, 이미지)</li>
+  
+        <li>application.properties : Spring Boot 프로젝트 관련 설정을 정의하는 파일 (중요!)</li>
+      </ul>
+    </li>
+    <li>Project and External Dependencies : build.gradle에 명시된 라이브러리 모음</li>
+    <li>
+      build.gradle : gradle(빌드도구 == maven의 pom.xml) <br>
+      프로젝트에 필요한 라이브러리, 배포, 빌드 관련 설정을 작성하는 파일
+    </li>
+    <hr>
+    <h3><a href="/forward">Spring 요청 처리 방법 + forward 방법 + thymeleaf 기초</a></h3>
+  
+    <h3><a href="/param/main">서버로 파라미터 제출하기 + Thymeleaf 기초2</a></h3>
+
+  </ul>
+</body>
+</html>
