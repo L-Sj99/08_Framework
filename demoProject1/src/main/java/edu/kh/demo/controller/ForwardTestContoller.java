@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 // @Controller 어노테이션
 // 1) Controller 임을 명시
 // 2) 클래스에 작성된 내용대로 구현 -> 스프링이 객체 생성 == Bean 등록 / Bean 생성
+
+// Annotation : 주석, 컴파일러가 코드 작성 문법 에러를 체크하도록 정보 제공
 @Controller
 public class ForwardTestContoller {
 	// 기존 Servlet
@@ -36,7 +38,7 @@ public class ForwardTestContoller {
 	
 	// Controller 메서드 작성 방법
 	// 1) 접근 제한자는 무조건 public
-	// 2) 반환 현은 대부분 String(ModelAngView 또는 Ajax 사용 시 달라질 수 있음
+	// 2) 반환형은 대부분 String(ModelAngView 또는 Ajax 사용 시 달라질 수 있음)
 	// String작성 이유 : Controller 메서드에서 반환되는 문자열이 forward할 html 파일의 경로가 되기 때문
 	
 	// 3) 메서드명은 의미있게 알아서 잘 작성
@@ -52,7 +54,7 @@ public class ForwardTestContoller {
 		 * - Thymeleaf 사용 시 접두사 접미사가 제공됨
 		 * - 접두사(prefix) : classpath:/templates/
 		 * - 접미사(suffix) : .html
-		 * ** Controller 메서드에서 반환되는 문자열에 앞, 뒤에 접두사, 접미사가 붙어서 forward할 html 파일의 경로 형태가 된다
+		 * ** Controller 메서드에서 반환되는 문자열 앞, 뒤에 접두사, 접미사가 붙어서 forward할 html 파일의 경로 형태가 된다
 		 */
 		
 		//classpath:/templates/forward.html
