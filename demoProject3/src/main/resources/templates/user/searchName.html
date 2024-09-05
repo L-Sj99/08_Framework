@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>사용자 이름 조회하기</title>
+</head>
+<body>
+  <h2 th:text="${userName ?: '조회 결과 없음'}"></h2>
+  
+</body>
+</html>

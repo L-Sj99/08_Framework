@@ -6,6 +6,8 @@
   <title>Thymeleaf</title>
 </head>
 <body>
+  <!-- fr-test 조각으로 변경 -->
+  <div class="aaa" th:replace="~{fragments/temp :: fr-test}"></div>
   <h2>Thymeleaf</h2>
   <ol>
     <li><a href="/example/ex1">타임리프 예제1</a></li>
@@ -24,6 +26,18 @@
         <button>제출하기</button>
       </form>
     </li>
+
+    <li><a href="/example/ex3">타임리프 예제3</a></li>
+    <li><a href="/example/ex4">타임리프 예제4</a></li>
+    <li><a href="/example/ex5">타임리프 예제5</a></li>
   </ol>
+  <hr>
+  <h2>조각 테스트</h2>
+  <!-- th:insert == 조각 삽입 -->
+  <div class="ddd" th:insert="~{fragments/temp :: menu}"></div>
+  <hr>
+
+  <!-- footer.html 파일을 해당 위치에 출력 -->
+  <th:block th:replace= "~{fragments/footer}"></th:block>
 </body>
 </html>

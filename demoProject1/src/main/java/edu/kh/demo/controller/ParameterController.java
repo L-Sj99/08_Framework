@@ -143,11 +143,13 @@ public class ParameterController {
 		/* type="text" 관련 input 태그는 값을 작성하지 않은 경우 "빈칸"이 제출된다 -> 제출되는 값이 존재하기
 		 * 때문에 @RequestParam()에 아무 속성을 적지 않아도 잘 얻어와진다
 		 * 
-		 * name 속성 == value 속성(같은 속성) required : 필수 -> 기본 값이 true - true가 설정된 경우 == 꼭 제출
-		 * 되어야 하는 파라미터 -> 제출 되지 않을 경우 HTTP 상태코드 400 -> 400 Bad Request 에러 발생
+		 * name 속성 == value 속성(같은 속성) required : 필수
+		 * -> 기본 값이 true
+		 * - true가 설정된 경우 == 꼭 제출 되어야 하는 파라미터
+		 * -> 제출 되지 않을 경우 HTTP 상태코드 400 -> 400 Bad Request 에러 발생
 		 * 
-		 * * checkbox, radio : 체크도.ㅣ지 않으면 제출 X -> 400번 에러 * 직접 쿼리스트링을 작성하는 경우 key=value가
-		 * 누락된 경우 -> 400번 에러
+		 * * checkbox, radio : 체크되지 않으면 제출 X -> 400번 에러
+		 * * 직접 쿼리스트링을 작성하는 경우 : key=value가 누락된 경우 -> 400번 에러
 		 * 
 		 * * required = false일 때 값이 제출 안되면 -> null
 		 * 
@@ -165,12 +167,13 @@ public class ParameterController {
 	/* 5. @ModelAttribute를 이용한 파라미터 얻어오기 */
 	
 	/* @ModelAttribute
-	 * - DTO(또는 VO)와 같이 사용하는 어노테이션 - 전달 받은 파라미터의 name 속성 값이 같이 사용되는
+	 * - DTO(또는 VO)와 같이 사용하는 어노테이션 - 전달 받은 파라미터의 name 속성 값이 같이 사용되는 경우
 	 * - DTO의 필드명과 같다면 자동으로 setter를 호출해서 필드에 값을 셋팅
 	 * - 많은 양의 파라미터를 하나의 DTO로 한번에 저장 할 수 있어서 편함
 	 * 
 	 * ModelAttribute 사용 시 주의사항
-	 * - DTO에 기본 생성자가 필수로 존재해야함 - DTO에 setter가 필수로 존재해야함
+	 * - DTO에 기본 생성자가 필수로 존재해야함
+	 * - DTO에 setter가 필수로 존재해야함
 	 * 
 	 * *중요*
 	 * @ModelAttribute 어노테이션은 생략 가능

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thymeleaf 예제5</title>
+  <style>
+    .blue{color : cadetblue}
+    .green{color : darkolivegreen}
+  </style>
+</head>
+<body>
+  <h2>타임리프 예제5</h2>
+  <h3>th:inline = "javascript"</h3>
+  <pre>
+  - script 태그에 작성하는 속성
+  - 타임리프 문법으로 출력된 내용 / 값을 JS에 알맞은 타입으로 변환하는 속성
+  - /**/ 범위 주석이랑 같이 사용 가능(띄어쓰기 하면 안됨, 붙여쓰기)
+  </pre>
+  <!-- Natural Template
+    const temp = /*타임리프 구문*/ html단독실행값;
+    - 해당 html이 forward되어 응답용으로 사용 될 때 /*타임리프 구문*/ 해석되어서 적용
+    - 해당 html이 local 환경에서 단독 실행 되었을 때 html 단독실행값 해석되어서 적용
+  -->
+  <script th:inline="javascript">
+    // 서버에서 전달 받은 message는 String 타입 -> JS 문자열로 인식하도록 따옴표 붙이기
+    const message = /*[[${message}]]*/ "메시지";
+
+    // 서버에서 전달받은 num은 int 타입 -> JS에서 number 인식하도록 따옴표 안붙여도 됨
+    const num = /*[[${num}]]*/ 1234;
+
+    // 서버에서 전달받은 std는 Student 타입의 객체 -> JS 에서 JS객체(Object)로 인식하게 하는 법
+    // -> JS 객체로 바꾸기 위한 가공처리가 필요
+    const std = /*[[${std}]]*/ {"name" : "집 보내줘"};
+  </script>
+  <hr>
+
+  <h3>th:classappend 속성</h3>
+  <pre>
+    - 클래스 속성 값을 추가하는 Thymeleaf 속성
+    - 주의사항 : 카멜표기법이 아닌 소문자로 전체 작성
+  </pre>
+  <h4 class="a" th:classappend="b">테스트</h4>
+  <h4 th:classappend="${num} > 10000 ? green : blue">집에 보내줘라</h4>
+  <hr>
+
+  <h3>안전 탐색 연산자(${객체?.필드})</h3>
+  <pre>
+    - 객체가 null인지 판단 후 null이 아닌 경우에만 필드 값을 얻어와 출력된-> NullPointerException 방지
+  </pre>
+  <h4 th:text="${std100?.studentNo}">std100의 학번</h4>
+  <h4 th:text="${std?.studentNo}">std의 학번</h4>
+  <hr>
+
+  <h3>${#numbers.sequence(시작, 끝 [,step])}</h3>
+  <pre>
+    - 오라클에서 sequence : 번호 발생기
+    - 시작부터 끝까지 step만큼 증가하는 숫자로 이루어진 숫자 배열을 만드는 기능
+    ex) ${#numbers.sequence(1, 5)} => {1, 2, 3, 4, 5}
+    ex) ${#numbers.sequence(1, 5, 2)} => {1, 3, 5}
+    [사용 이유]
+    - 타임리프의 반복문(th:each)은 향상된 for문 형식으로 원하는 횟수만큼의 반복이 불가능한데,
+      이를 가능하게 만들 때 사용
+  </pre>
+  <ul>
+    <li th:each="i : ${#numbers.sequence(1, 10)}" th:text="|test = ${i}|"></li>
+  </ul>
+  <ul>
+    <li th:each="i : ${#numbers.sequence(start, end)}" th:text="|test2 = ${i}|">start부터 end까지 반복</li>
+  </ul>
+
+  <!-- fragments/temp.html에 있는 조각 중 menu를 얻어와 삽입 -->
+  <!--
+  - fragments를 나타내는 Spring EL 기호 : ~(틸드)
+  - 조각 경로 작성 법 == forward 작성법 처럼 접두사, 접미사를 제외하고 작성-->
+  <th:block th:insert="~{fragments/temp :: menu}"></th:block>
+  <th:block th:replace= "~{fragments/footer}"></th:block>
+</body>
+</html>
