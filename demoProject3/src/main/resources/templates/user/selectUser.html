@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>|${user.userId} 상세 정보 조회 페이지|</title>
+  <style>
+    tbody th, button{
+      padding: 3px;
+      background-color: cadetblue;
+      color:beige;
+    }
+    h2{color:cadetblue}
+  </style>
+</head>
+<body>
+  <h2 th:text="|${user.userName}님 상세 정보 조회 페이지|"></h2>
+  <form th:action="@{/user/update/{userNo}(userNo=${user.userNo})}" method="post">
+    <table border="1" style="border-collapse: collapse;">
+      <tbody>
+        <tr>
+          <th>회원번호</th>
+          <td th:text="${user.userNo}"></td>
+        </tr>
+        <tr>
+          <th>아이디</th>
+          <td th:text="${user.userId}"></td>
+        </tr>
+        <tr>
+          <th>비밀번호</th>
+          <td><input type="text" name="userPw" th:value="${user.userPw}"></td>
+        </tr>
+        <tr>
+          <th>회원이름</th>
+          <td>
+            <input type="text" name="userName" th:value="${user.userName}">
+          </td>
+        </tr>
+        <tr>
+          <th>가입날짜</th>
+          <td th:text="${user.enrollDate}"></td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <button>수정</button>
+    <button type="button" id="deleteBtn">삭제</button>
+    <button type="button" id="goToList">목록으로 돌아가기</button>
+  </form>
+  <form th:action="@{/user/delete/{userNo}(userNo=${user.userNo})}" id="deleteForm" method="post"></form>
+  <script>
+    document.querySelector("#goToList")
+      .addEventListener("click", () => location.href="/user/selectAll" );
+    const deleteBtn = document.querySelector("#deleteBtn");
+    const deleteForm = document.querySelector("#deleteForm");
+
+    // 삭제 버튼 클릭 시
+    deleteBtn.addEventListener("click", () =>{
+      // 취소 버튼 클릭 시
+      if(!confirm("삭제하시겠습니까?")) return;
+      // 확인 버튼 클릭 시 deleteForm 제출
+      deleteForm.submit();
+    });
+  </script>
+
+  <!-- message 출력하는 script 조각 추가하기 -->
+  <th:block th:replace= "~{user/selectAll :: messageAlert}"></th:block>
+</body>
+</html>

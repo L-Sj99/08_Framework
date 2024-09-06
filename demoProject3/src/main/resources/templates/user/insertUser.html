@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>사용자 추가</title>
+  <style>
+    thead th, button{
+      padding: 3px;
+      background-color: cadetblue;
+      color:beige;
+    }
+    h2{color:cadetblue}
+  </style>
+</head>
+<body>
+  <h2>사용자 추가</h2>
+  <form action="/user/insert" method="post">
+  <div>
+    Id : <input type="text" name="userId">
+  </div>
+  <div>
+    Pw : <input type="password" name="userPw">
+  </div>
+  <div>
+    Name : <input type="text" name="userName">
+  </div>
+  <button>추가하기</button>
+</form>
+</body>
+</html>
