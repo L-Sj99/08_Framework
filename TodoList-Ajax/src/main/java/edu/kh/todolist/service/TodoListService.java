@@ -1,5 +1,6 @@
 package edu.kh.todolist.service;
 
+import java.util.List;
 import java.util.Map;
 
 import edu.kh.todolist.dto.Todo;
@@ -18,13 +19,13 @@ public interface TodoListService {
 	int todoAdd(Todo todo);
 
 	/** 할 일 상세조회
-	 * @param todoNo
+	 * @param listNo
 	 * @return todo
 	 */
 	Todo listCheck(int listNo);
 
 	/** 완료 여부 변경
-	 * @param todoNo
+	 * @param listNo
 	 * @return result
 	 */
 	int todoComplete(int listNo);
@@ -36,9 +37,29 @@ public interface TodoListService {
 	int todoUpdate(Todo todo);
 
 	/** 할 일 삭제
-	 * @param todoNo
+	 * @param listNo
 	 * @return result
 	 */
 	int todoDelete(int listNo);
 
+	/** 할 일 전체 조회
+	 * @param listNo
+	 * @return
+	 */
+	String searchTitle(int listNo);
+
+	/** 전체 할 일 개수
+	 * @return : totalCount
+	 */
+	int getTotalCount();
+
+	/** 완료된 할 일 개수
+	 * @return completeCount
+	 */
+	int getCompleteCount();
+
+	/** 할 일 전체 목록 비동기 요청 처리
+	 * @return
+	 */
+	List<Todo> getTodoList();
 }

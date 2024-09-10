@@ -47,5 +47,17 @@ public interface TodoListMapper {
 	 * @param listNo
 	 * @return result
 	 */
-	int todoDelete(int listNo);
+	int todoDelete(int lsitNo);
+
+	/**
+	 * @param listNo
+	 * @return
+	 */
+	String searchTitle(int listNo);
+
+	/** 전체 할 일 개수 조회
+	 * @return
+	 */
+	int getTotalCount();
+
 }

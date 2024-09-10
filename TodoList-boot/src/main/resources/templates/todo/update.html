@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>할 일 수정</title>
+</head>
+<body>
+  
+  <h3>할 일 수정</h3>
+
+  <form action="/todo/update" method="post">
+    <div>
+      제목 : <input type="text" name="listTitle" th:value="${todo.listTitle}">
+    </div>
+    <div>
+      <textarea name="listCheck" 
+        rows="3" cols="50" placeholder="상세 내용" th:text="${todo.listCheck}"></textarea>
+    </div>
+
+    <input type="hidden" name="listNo" th:value="${todo.listNo}">
+
+    <button>수정</button>
+  </form>
+
+</body>
+</html>

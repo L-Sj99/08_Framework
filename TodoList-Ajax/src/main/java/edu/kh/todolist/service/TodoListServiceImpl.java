@@ -68,4 +68,26 @@ public class TodoListServiceImpl implements TodoListService{
 	public int todoDelete(int listNo) {
 		return mapper.todoDelete(listNo);
 	}
+	
+	@Override
+	public String searchTitle(int listNo) {
+		return mapper.searchTitle(listNo);
+	}
+
+	@Override
+	public int getTotalCount() {
+		return mapper.getTotalCount();
+	}
+
+	@Override
+	public int getCompleteCount() {
+		return mapper.selectCompleteCount();
+	}
+
+	@Override
+	public List<Todo> getTodoList() {
+		return mapper.selectTodoList();
+	}
 }
+
+
