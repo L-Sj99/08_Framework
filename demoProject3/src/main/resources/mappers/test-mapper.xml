@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<!-- 연ㄱ열한 Mapper 인터페이스 파일 경로 작성(필수) -->
+<!-- 연결한 Mapper 인터페이스 파일 경로 작성(필수) -->
 <mapper namespace="edu.kh.demo.mapper.TestMapper">
   <!-- 해당 태그는 무조건 삭제!! -->
 <!--<cache-ref namespace=""/>-->
@@ -8,7 +8,7 @@
 	<!-- 
 		* <select> 태그에서 사용할 수 있는 속성 *
 		
-		- paramterType : 전달 받은 "값"의 자료형
+		- parameterType : 전달 받은 "값"의 자료형
 		
 		- resultType : 조회된 결과 "행"의 자료형
 		
