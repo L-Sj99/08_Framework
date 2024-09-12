@@ -17,8 +17,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-
-
 @Slf4j // log 필드 생성 및 초기화 자동완성 lombok 어노테이션(print 사용 안하고 콘솔 표시)
 @RequestMapping("example") // /example로 시작하는 요청을 매핑
 @Controller // 컨트롤러임을 명시 + bean 등록
@@ -59,11 +57,7 @@ public class ExampleController {
 		model.addAttribute("fruitList", fruitList);
 		
 		// DTO 객체를 만들어 Model에 셋팅 + 빌더 패턴 사용
-		Student std = Student.builder()
-												 .studentNo("1111")
-												 .name("짱구")
-												 .age(15)
-												 .build(); // -> 필드 전체가 아닌 일부 초기화 시 활용도가 좋음
+		Student std = Student.builder() .studentNo("1111") .name("짱구") .age(15) .build(); // -> 필드 전체가 아닌 일부 초기화 시 활용도가 좋음
 		
 		log.debug("std : {}", std);
 		
@@ -75,12 +69,7 @@ public class ExampleController {
 		hobbyList.add("요리");
 		hobbyList.add("청소");
 		
-		Student std2=Student.builder()
-												.studentNo("2222")
-												.name("철수")
-												.age(20)
-												.hobbyList(hobbyList)
-												.build();
+		Student std2=Student.builder() .studentNo("2222") .name("철수") .age(20) .hobbyList(hobbyList) .build();
 		model.addAttribute("std2", std2);
 		
 		// classpath:/templates/ex/result1.html 파일로 forward(요청 위임)

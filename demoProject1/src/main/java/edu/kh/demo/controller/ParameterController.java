@@ -87,7 +87,6 @@ public class ParameterController {
 		 * defaultValue : 파라미터 중 일치하는 name 속성 값이 없을 경우에 대입할 값 지정. -> required = false인
 		 * 경우 사용
 		 */
-
 	}
 
 	// /param/test2 Post 방식 요청을 처리하는 메서드
