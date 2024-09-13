@@ -2,7 +2,6 @@
   --main-color: #455ba8;
 }
 
-
 * {
   /* border: 1px solid black; */
   box-sizing: border-box;
@@ -35,15 +34,11 @@ main {
   }
 }
 
-
-
 /* a태그 스타일 지정 */
 a {
   text-decoration: none;
   color: #455ba8;
 }
-
-
 
 /* *********** header *********** */
 header {
@@ -211,7 +206,6 @@ nav a:hover {
   /* 중심축(세로) 가운데 정렬 */
 }
 
-
 /* id/pw 입력 영역 */
 .id-pw-area {
   border: 1px solid #ccc;
@@ -219,7 +213,6 @@ nav a:hover {
   flex-basis: 60%;
   /* 중심축(세로) 방향 60% (== height:60%) */
 }
-
 
 .id-pw-area>section:first-of-type {
   width: 75%;
@@ -245,7 +238,6 @@ input[name="memberEmail"] {
 .id-pw-area>section:first-of-type>input:focus {
   border: 2px solid var(--main-color) !important;
 }
-
 
 /* 로그인 버튼 영역 */
 .id-pw-area>section:last-of-type {
@@ -402,7 +394,6 @@ footer span {
 }
 
 
-
 /* ********** 헤더 오른쪽 상단 메뉴 ************ */
 header {
   position: relative;
@@ -414,6 +405,7 @@ header {
   position: absolute;
   right: 10px;
   top: 5px;
+  color: #455ba8;
 }
 
 .header-top-menu * {

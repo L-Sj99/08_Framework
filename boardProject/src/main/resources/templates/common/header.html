@@ -30,10 +30,31 @@
   </article>
 </section>
 
+<!-- 화면 우측 상단 로그인/드롭 다운 메뉴  -->
+<section>
+  <div class="header-top-menu">
 
-<!-- 안쓰는 섹션 -->
-<section></section>
+    <!-- 로그인 X -->
+    <th:block th:unless="${session.loginMember}">
+      <a href="/">메인 페이지</a>
+      |
+      <a href="/member/login">로그인</a>
+    </th:block>
 
+    <!-- 로그인 O -->
+    <th:block th:if="${session.loginMember}">
+      <label for="headerMenuToggle">
+        [[${session.loginMember.memberNickname}]]
+        <i class="fa-solid fa-caret-down"></i>
+      </label>
+      <input type="checkbox" id="headerMenuToggle">
+      <div class="header-menu">
+        <a href="#">MY PAGE</a>
+        <a href="/member/logout">LOGOUT</a>
+      </div>
+    </th:block>
+  </div>
+</section>
 </header>
 
 <!-- navigator -->

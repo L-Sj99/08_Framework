@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
 import com.kh.test.customer.dto.Customer;
 import com.kh.test.customer.service.CustomerService;
 

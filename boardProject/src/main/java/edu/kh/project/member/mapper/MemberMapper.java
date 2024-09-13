@@ -15,5 +15,4 @@ public interface MemberMapper {
 	 * @return loginMember 또는 null
 	 */
 	Member login(String memberEmail);
-
 }
