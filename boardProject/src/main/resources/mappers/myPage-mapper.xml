@@ -18,4 +18,19 @@
 		AND MEMBER_NICKNAME = #{input}
 	</select>
 	
+	
+	<!-- 비밀번호 변경 -->
+	<update id="changePw">
+		UPDATE "MEMBER"
+		SET MEMBER_PW = #{encPw}
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
+	
+	<!-- 회원 탈퇴 -->
+	<update id="secession">
+		UPDATE "MEMBER"
+		SET MEMBER_DEL_FL = 'Y'
+		WHERE MEMBER_NO = #{mamberNo}
+	</update>
+	
 </mapper>
