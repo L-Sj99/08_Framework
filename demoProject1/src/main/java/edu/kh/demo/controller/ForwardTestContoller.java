@@ -1,5 +1,5 @@
 package edu.kh.demo.controller;
-// Controller : 어던 요청을 받고, 어떻게 응답할지 제어하는 역할
+// Controller : 어떤 요청을 받고, 어떻게 응답할지 제어하는 역할
 // - 어떤 요청을 처리할지 주소 매핑, 요청 처리된 결과에 따라 응답하는 방법(forward, redirect, 값 등)
 
 import org.springframework.aop.target.HotSwappableTargetSource;

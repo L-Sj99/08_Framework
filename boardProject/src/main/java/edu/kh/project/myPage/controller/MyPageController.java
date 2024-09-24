@@ -183,7 +183,7 @@ public class MyPageController {
 		
 		return "redirect:" + path;
 	}
-	
+
 	
 	/* @RequestParam 
 	 *  - 요청 시 제출된 데이터(쿼리스트링, input)를 얻어와 매개변수에 저장하는 어노테이션
