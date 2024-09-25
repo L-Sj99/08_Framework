@@ -148,7 +148,7 @@ memberTel?.addEventListener("input", () => {
 // ----------------------------------------------------------------------------------------------
 /* 내 정보 수정 form 제출 시 */
 const updateInfo = document.querySelector("#updateInfo");
-updateInfo?.addEventListener("submit", e =>{
+updateInfo?.addEventListener("submit", e => {
   // checkObj에 작성된 값 검사하기(닉네임, 전화번호 유효한지 검사)
   // for~in 구문 : JS 객체의 key 값을 하나씩 접근하는 반복문
   for(let key in checkObj) { // 향상된 for문에 map처럼 작성
@@ -164,29 +164,6 @@ updateInfo?.addEventListener("submit", e =>{
       return;
     }
   } // for in end
-  /* 주소 유효성 검사
-  - 모두 작성 또는 모두 미작성 */
-  /*   const postcode = document.querySelector("#postcode").value.trim();
-  const address = document.querySelector("#address").value.trim();
-  const detailAddress = document.querySelector("#detailAddress").value.trim(); */
-  
-  const addr = document.querySelectorAll("[name = memberAddress]");
-  
-  let empty = 0; // 비어있는 input 개수
-  let notEmpty = 0; // 비어있지 않은 input 개수
-  
-  // for ~ of 향상된 for문
-  for(let item of addr) {
-    let len = item.value.trim().length; // 작성된 값의 길이
-    if(len > 0) notEmpty++; // 비어있지 않은 경우
-    else empty++; // 비어있을 경우
-  }
-  // empty, notEmpty 중 3이 하나도 없을 경우
-  if(empty !== 3 && notEmpty !== 3) {
-    alert("주소가 유효하지 않습니다.\n모두 작성 또는 미작성해주세요.");
-    e.preventDefault();
-    return;
-  }
 });
 // ----------------------------------------------------------------------------------------------
 /* 비밀번호 변경 */

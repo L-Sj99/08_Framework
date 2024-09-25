@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
-
 @Component // Bean 등록, @Controller, @Service, @Repository와 같은 역할
 public class RedisUtil {
 // StringRedisTemplate

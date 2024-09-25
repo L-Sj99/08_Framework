@@ -21,5 +21,4 @@ public class MemberController {
 
 		return "member/select";
 	}
-	
 }

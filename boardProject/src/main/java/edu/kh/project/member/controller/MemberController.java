@@ -146,7 +146,6 @@ public class MemberController {
 	public int nicknameCheck(@RequestParam("nickname") String nickname) {
 		return service.nicknameCheck(nickname);
 	}
-
 	
 }
 
