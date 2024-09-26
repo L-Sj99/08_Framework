@@ -314,7 +314,7 @@ sendAuthKeyBtn.addEventListener("click", () =>{
   }) // POST 방식으로 /email/sendAuthKey 요청을 처리하는 컨트롤러에 입력된 이메일을 body에 담아서 제출
   .then(response => {
     if(response.ok) return response.text();
-    throw new Error("이메일 발솔을 실패하였습니다.");
+    throw new Error("이메일 발송에 실패하였습니다.");
   })
   .then(result => {
     console.log(result);
