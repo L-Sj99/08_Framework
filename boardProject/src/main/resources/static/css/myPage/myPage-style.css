@@ -231,8 +231,8 @@ form[name='myPageFrm']{position: relative;}
 }
 
 .green{
-  color : green;
+  color :#455ba8;
 }
 .red{
-  color: red;;
+  color: rgb(214, 104, 224);
 }

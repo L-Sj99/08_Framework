@@ -11,8 +11,12 @@
   <main>
     <!-- common/header.html 을 조각으로 추가 -->
     <th:block th:replace="~{common/header}"></th:block>
-    <br><h3>파일 업로드 테스트 할거임</h3><br>
-    <hr><br>
+    <style>
+      main{ padding: 20px; }
+      hr{ margin: 40px 0; }
+    </style>
+    <h3>파일 업로드 테스트 할거임</h3>
+    <hr>
     <pre>
       - 파일을 제출하려는 form 태그는 무조건 method = "POST" 타입
       - 파일을 제출하기 위해서는 enctype = "multipart/form-data" 타입으로 지정해야함
@@ -28,20 +32,30 @@
 
       * test/plain : 텍스트로 서버에 제출
     </pre>
-    <br>
     <hr>
-    <br>
     <div>
-      <h4>단일 파일 업로드(서버로 파일 제출)</h4><br>
+      <h4>단일 파일 업로드(서버로 파일 제출)</h4>
       <form action="/fileUpload/test1" method="post", enctype="multipart/form-data">
-        <input type="file" name="uploadFile"><br><br>
+        <input type="file" name="uploadFile">
         <button> 제출하기 </button>
       </form>
     </div>
-    <br>
     <hr>
-    <br>
-    <h3>업로드 된 파일 목록</h3><br>
+    <h3>단일 파일 업로드 + 일반 데이터</h3>
+    <form action="/fileUpload/test2" method="POST" enctype="multipart/form-data">
+      <input type="file" name="uploadFile"> <br>
+      서버에 저장되는 파일 이름을 지정 : 
+      <input type="text" name="fileName">
+      <button>제출하기</button>
+    </form>
+    <hr>
+    <h3>단일 파일 업로드 + 사용자 정의 예외를 이용한 예외 처리</h3>
+    <form action="/fileUpload/test3" method="POST" enctype="multipart/form-data">
+      <input type="file" name="uploadFile">
+      <button>제출하기</button>
+    </form>
+    <hr>
+    <h3>업로드 된 파일 목록</h3>
     <table border="1">
       <thead>
         <tr>
@@ -56,8 +70,10 @@
           <th th:text="*{fileNo}">번호</th>
           <td th:text="*{fileOriginalName}">원본 이름</td>
           <td>
-            <!-- download 속성 : 브라우저에서 열리지 않고 다운로드 -->
-            <a th:href="|*{filePath}*{fileRename}|" th:text="*{fileRename}" download>변경 할 이름</a>
+            <!--  download 속성 : 브라우저에서 열리지 않고 다운로드
+                  dounload = "파일명" : 다운로드되는 파일의 이름을 지정 -->
+            <a th:href="|*{filePath}*{fileRename}|" th:text="*{fileRename}" th:download="*{fileOriginalName}"
+            style="color: #455ba8; font-weight: bold;">변경 할 이름</a>
           </td>
           <td th:text="*{updateDate}">날짜</td>
         </tr>

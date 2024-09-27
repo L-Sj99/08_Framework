@@ -1,5 +1,7 @@
 package edu.kh.project.myPage.service;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import edu.kh.project.member.dto.Member;
 
 public interface MyPageService {
@@ -30,5 +32,12 @@ public interface MyPageService {
 	 * @return result
 	 */
 	int secession(String memberPw, Member loginMember);
+
+	/** 회원 프로필 이미지 수정
+	 * @param profileImg
+	 * @param memberNo
+	 * @return
+	 */
+	String profile(MultipartFile profileImg, int memberNo);
 
 }
