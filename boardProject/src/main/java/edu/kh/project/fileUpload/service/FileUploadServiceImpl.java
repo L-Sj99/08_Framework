@@ -52,10 +52,8 @@ public class FileUploadServiceImpl implements FileUploadService{
 			forder.mkdirs(); // 폴더 생성
 		}
 		
-		/* DB에 업로드 되는 파일 정보를 INSERT 
-		 * -> DB INSERT -> 파일 저장 순서로 동작
-		 * 만약에 파일 저장 중 예외 발생
-		 * -> @Transactional 어노테이션 Rollback 수행 -> INSERT 취소
+		/* DB에 업로드 되는 파일 정보를 INSERT -> DB INSERT -> 파일 저장 순서로 동작
+		 * 만약에 파일 저장 중 예외 발생 -> @Transactional 어노테이션 Rollback 수행 -> INSERT 취소
 		 */
 		
 		/* 원본 파일명을 중복되지 않는 이름으로 변경 */
