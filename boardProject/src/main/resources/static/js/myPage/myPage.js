@@ -269,7 +269,7 @@ secession?.addEventListener("submit", e => {
 let statusCheck = -1;
 
 // 마지막으로 선택괸 파일을 저장할 변수
-let lastVaildFile = null;
+let lastValidFile = null;
 
 // 미리보기가 출력될 img
 const profileImg = document.querySelector("#profileImg");
@@ -291,7 +291,7 @@ if(imageInput != null) { // 프로필 변경 화면인 경우
     // 파일을 읽어오는데 DataURL 형식으로 읽어옴
     // DateURL : 파일 전체 데이터가 브라우저가 해석할 수 있는 긴 주소형태 문자열로 변환
     reader.readAsDataURL(file);
-    lastVaildFile = file; // 선택된 파일을 lastVaildFile에 대입(복사)
+    lastValidFile = file; // 선택된 파일을 lastValidFile에 대입(복사)
     reader.addEventListener("load", e => { // 선택된 파일이 다 인식 되었을 때
       profileImg.src = e.target.result;
       // e.target.result == 파일이 변환된 주소 형태 문자열
@@ -304,22 +304,22 @@ if(imageInput != null) { // 프로필 변경 화면인 경우
 
     // 선택된 파일이 없을 경우
     if(file === undefined) {
-      // 이 전에 선택한 파일 유지하는 코드 -> 이 전에 선택한 파일을 저장할 전역 변수(lastVaildFile) 선언
+      // 이 전에 선택한 파일 유지하는 코드 -> 이 전에 선택한 파일을 저장할 전역 변수(lastValidFile) 선언
 
       // 이 전에 선택한 파일이 없는 경우 == 현재 페이지 들어와서 프로필 이미지 바꾼적이 없는 경우
-      if(lastVaildFile === null) return;
+      if(lastValidFile === null) return;
 
       // 이 전에 선택한 파일이 있을 경우
       const dataTransfer = new DataTransfer();
 
-      // DataTransfer가 가지고 있는 files 필드에 lastVaildFile 추가
-      dataTransfer.items.add(lastVaildFile);
+      // DataTransfer가 가지고 있는 files 필드에 lastValidFile 추가
+      dataTransfer.items.add(lastValidFile);
 
-      // input의 files 변수에 lastVaildFile이 추가된 files 대입
+      // input의 files 변수에 lastValidFile이 추가된 files 대입
       imageInput.files = dataTransfer.files;
 
       // 이 전에 선택된 파일로 미리보기(되돌리기)
-      updatePreview(lastVaildFile);
+      updatePreview(lastValidFile);
       return;
     }
     // 선택된 파일이 있을 경우
@@ -333,7 +333,7 @@ if(imageInput != null) { // 프로필 변경 화면인 경우
 
     // input 태그와 마지막 선택된 파일을 저장하는 lastValidFile에 저장된 값을 모두 삭제
     imageInput.value = '';
-    lastVaildFile = null;
+    lastValidFile = null;
     statusCheck = 0; // 삭제 상태 체크
   });
 }

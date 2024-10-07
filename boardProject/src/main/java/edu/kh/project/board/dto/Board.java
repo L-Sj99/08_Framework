@@ -1,5 +1,7 @@
 package edu.kh.project.board.dto;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -7,8 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-// DTO(Data Transfer Object) : 계층간 데이터 전달용 객체
-// - 계층? Controller, Service, DB 등을 구분
+// DTO(Data Transfer Object) : 계층간 데이터 전달용 객체 - 계층? Controller, Service, DB 등을 구분
 @Getter
 @Setter
 @NoArgsConstructor
@@ -39,6 +40,10 @@ public class Board {
 	private int		 likeCount;
 	
 	//------------------------------
-	// (추가 작성 예정)
+	private String thumbnail; // 썸네일 이미지
+	private String profileImg; // 작성자 프로필 이미지
+	
+	private List<BoardImg> imageList;// 특정 게시글의 이미지 목록을 저장할 필드
+	private List<Comment> commentList; // 특정 게시글의 댓글 목록을 저장할 필드
 	
 }
