@@ -45,5 +45,6 @@ public class Board {
 	
 	private List<BoardImg> imageList;// 특정 게시글의 이미지 목록을 저장할 필드
 	private List<Comment> commentList; // 특정 게시글의 댓글 목록을 저장할 필드
+	private int likeCheck; // 좋아요 체크 여부를 저장할 필드(1 == 누른 적 있음)
 	
 }

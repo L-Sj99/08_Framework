@@ -73,8 +73,8 @@ public class EditBoardController {
 			path = "insert";
 			message = "게시글 작성에 실패 했습니다.";
 		} else {
-			// path = "/board/" + boardCode + "/" + boardNo; // 상세조회 주소
-			path = "/board/" + boardCode; // 목록 조회 주소(임시)
+			path = "/board/" + boardCode + "/" + boardNo; // 상세조회 주소
+//			path = "/board/" + boardCode; // 목록 조회 주소(임시)
 			message = "게시글 작성이 되었습니다.";
 		}
 		ra.addFlashAttribute("message", message);
