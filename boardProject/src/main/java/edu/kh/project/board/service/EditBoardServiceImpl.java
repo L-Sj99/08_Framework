@@ -76,7 +76,7 @@ public class EditBoardServiceImpl implements EditBoardService{
 		// -------------------------------------------------------------------
 		// 3) DB에 uploadList에 저장된 값 모두 INSERT + TransferTo() 수행해서 파일 저장
 		
-		/* [List에 저장된 내용 IMSERT 하는 방법]
+		/* [List에 저장된 내용 INSERT 하는 방법]
 		 * 1. 1행을 삽입 하는 mapper 메서드를 여러번 호출하는 방법
 		 * 2. 여러 행을 삽입하는 mapper 메서드 1회 호출(복잡한 SQL + 동적 SQL)
 		 */
@@ -103,5 +103,70 @@ public class EditBoardServiceImpl implements EditBoardService{
 				throw new FileUploadFailException();
 			}
 		return boardNo;
+	}
+
+	/* 게시물 삭제하기 */
+	@Override
+	public int boardDelete(int boardNo, int memberNo) {
+		return mapper.boardDelete(boardNo, memberNo);
+	}
+
+	/* 게시글 수정 */
+	@Override
+	public int boardUpdate(Board inputBoard, List<MultipartFile> images, String deleteOrderList) {
+		// 1. 게시글 부분(제목 / 내용) 수정
+		int result = mapper.boardUpdate(inputBoard);
+		if(result == 0) return 0 ; // 수정 실패 시
+		
+		// 2. 기존에 존재했던 이미지 중 deleteOrderList에 존재하는 순서의 이미지를 DELETE
+		
+		if(deleteOrderList != null && deleteOrderList.equals("") == false) { // deleteOrderList에 작성된 값이 있다면
+			result = mapper.deleteImage(deleteOrderList, inputBoard.getBoardNo());
+			if(result == 0) { // 삭제된 행이 없을 경우 -> SQL 실패, 예외 발생시켜 전체 rollback
+				// 사용자 정의 예외로 바꾸면 더 좋음
+				throw new RuntimeException("이미지 삭제가 실패하였습니다.");
+			}
+		}
+		// 3. 업로드된 이미지가 있을 경우 UPDATE 또는 INSERT + reansferTo()
+		// 실제 업로드 된 이미지만 모아두는 리스트 생성
+		List<BoardImg> uploadList = new ArrayList<>();
+		for(int i = 0 ; i < images.size() ; i++) {
+			if(images.get(i).isEmpty()) continue; // i번째 요소에 업로드 된 파일이 없으면 다음으로
+			
+			// 업로드 된 파일이 있으면
+			String originalName = images.get(i).getOriginalFilename();
+			String rename = FileUtil.rename(originalName);
+			
+			// 필요한 모든 값을 저장한 DTO 생성
+			BoardImg img = BoardImg.builder()
+														 .imgOriginalName(originalName)
+														 .imgRename(rename)
+														 .imgPath(webPath)
+														 .boardNo(inputBoard.getBoardNo())
+														 .imgOrder(i)
+														 .uploadFile(images.get(i))
+														 .build();
+			// 1행씩 update 수행
+			result = mapper.updateImage(img);
+			if(result == 0) { // 수정 실패 == 기존 이미지가 없었음 == 새로운 이미지 새 order번째 자리에 추가 -> INSERT
+				result = mapper.insertImage(img);
+			}
+			if(result == 0) { // 수정, 삭제 모두 실패한 경우 --> 말도 안되는 상황
+				throw new RuntimeException("이미지 DB 추가 실패");
+			}
+			uploadList.add(img); // 업로드된 파일 리스트에 img 추가
+		} // for end
+		if(uploadList.isEmpty()) return result; // 새로운 이미지가 없는 경우
+		
+		// 임시 저장된 이미지 파일을 지정된 경로로 이동(transferTo())
+		try {
+			for(BoardImg img : uploadList) {
+			img.getUploadFile().transferTo(new File(folderPath + img.getImgRename()));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new FileUploadFailException();
+		}
+		return result;
 	}
 }

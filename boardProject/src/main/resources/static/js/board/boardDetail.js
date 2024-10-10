@@ -34,3 +34,54 @@ boardLike.addEventListener("click", e => {
   })
   .catch(err => console.error(err));
 })
+
+// ------------------------------------------------------------------------------------------------------
+
+/* 삭제 버튼 클릭 시 
+* 삭제 버큰 클릭 시 "정말 삭제 하시겠습니까?" confirm() 띄우기
+* /editBoard/delete, POST 방식, 동기식 요청
+* -> form 태그 생성 + 게시글 번호가 셋팅된 input -> body 태그 제일 아래 추가해서 submit()
+* 서버(Java)에서 로그인한 회원의 회원 번호를 얻어와 로그인한 회원이 작성한 글이 맞는지 SQL에서 검사
+*/
+
+// 삭제 버튼 요소 얻어오기
+const deleteBtn = document.querySelector("#deleteBtn");
+
+// 삭제 버튼이 존재할 때 이벤트 리스너 추가
+deleteBtn.addEventListener("click", () => {
+  const url = "/editBoard/delete"; // 요청 주소, 게시글 번호 == 전역 변수 boardNo
+  
+  if(confirm("정말 삭제하시겠습니까?") == false) return;
+  
+  // form 태그 생성
+  const form = document.createElement("form");
+  form.action = url;
+  form.method = "POST";
+  
+  // input 태그 생성
+  const input = document.createElement("input");
+  input.type = "hidden";
+  input.name = "boardNo";
+  input.value = boardNo;
+  
+  form.append(input) // form 자식으로 input 추가
+  document.querySelector("body").append(form); // body 자식으로 form 추가
+  form.submit(); // 제출
+})
+
+// ------------------------------------------------------------------------------------------------------
+
+/* 수정버튼 클릭 시
+ * "/editBoard/{boardCode}/{boardNo}/updateView" + POST방식, 동기식, form 태그 생성, body 태그 제일 아래 추가해서 submit()
+ * 서버(Java)에서 로그인한 회원의 회원 번호를 얻어와 로그인한 회원이 작성한 글이 맞을 경우 해당 글을 상세 조회한 후 수정화면으로 전환
+ */
+const updateBtn = document.querySelector("#updateBtn");
+updateBtn?.addEventListener("click", () => {
+  const form = document.createElement("form");
+
+  // /editBoard/{boardCode}/{boardNo}/update
+  form.action = location.pathname.replace("board", "editBoard") + "/updateView";
+  form.method = "POST";
+  document.querySelector("body").append(form);
+  form.submit();
+})

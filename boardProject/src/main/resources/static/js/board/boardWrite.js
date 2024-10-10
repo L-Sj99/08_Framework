@@ -5,7 +5,7 @@
  * 
  * [getElementsByClassName() 사용 이유]
  * - 요소를 얻어와서 실시간으로 변화되는 상태를 계속 추적함 */
-const perviewList = document.getElementsByClassName("preview");
+const previewList = document.getElementsByClassName("preview");
 const inputImageList = document.getElementsByClassName("inputImage");
 const deleteImageList = document.getElementsByClassName("delete-image");
 
@@ -43,7 +43,7 @@ const updatePreview = (file, order) => {
    // DataURL: 파일 전체 데이터가 브라우저가 해석할 수 있는 긴 주소형태 문자열로 변환
   reader.readAsDataURL(file);
   reader.addEventListener("load", e => {
-    perviewList[order].src = e.target.result; // e.target.result == 파일이 변환된 주소 형태 문자열
+    previewList[order].src = e.target.result; // e.target.result == 파일이 변환된 주소 형태 문자열
   })
 }
 
@@ -73,11 +73,12 @@ for(let i = 0 ; i < inputImageList.length ; i++) {
   })
   /* x 버튼 클릭 시 미리보기, 선택된 파일 삭제 */
   deleteImageList[i].addEventListener("click", () => {
-    perviewList[i].src=""; // 미리보기 삭제
+    previewList[i].src=""; // 미리보기 삭제
     inputImageList[i].value = ""; // 선택된 파일 삭제
     lastValidFiles[i] = null; // 백업 파일 삭제
   })
 }
+
 /* 제목, 내용 미작성 시 제출 불가 */
 const form = document.querySelector("#boardWriteFrm");
 form.addEventListener("submit", e => {
