@@ -48,13 +48,20 @@ public class BoardController {
 	@GetMapping("{boardCode:[0-9]+}")
 	public String selectBoardList(
 		@PathVariable("boardCode") int boardCode,
-		@RequestParam(value = "cp", required = false, defaultValue = "1") int cp, Model model) {
+		@RequestParam(value = "cp", required = false, defaultValue = "1") int cp, Model model,
+		@RequestParam Map<String, Object> paramMap) {
+		log.debug("paramMap : {} ", paramMap);
 		
-		// 서비스 호출 후 결과 반환 받기
-		// - 목록 조회인데 Map으로 반환 받는 이유?
-		//  -> 서비스에서 여러 결과를 만들어 내야되는데 메서드는 반환을 1개만 할 수 있기 때문에 Map으로 묶어서 반환 받을 예정
-		Map<String, Object> map = service.selectBoardList(boardCode, cp);
-		
+		Map<String, Object> map = null;
+		if (paramMap.get("key") == null) { // 검색이 아닌 경우 == 일반 목록 조회
+
+			// 서비스 호출 후 결과 반환 받기
+			// - 목록 조회인데 Map으로 반환 받는 이유?
+			// -> 서비스에서 여러 결과를 만들어 내야되는데 메서드는 반환을 1개만 할 수 있기 때문에 Map으로 묶어서 반환 받을 예정
+			map = service.selectBoardList(boardCode, cp);
+		} else { // 검색한 경우
+			map = service.selectSearhList(boardCode, cp, paramMap); // paramMap에 key, query 담겨 있음
+		}
 		// map에 묶여있는 값 풀어놓기
 		List<Board> boardList = (List<Board>)map.get("boardList");
 		Pagination pagination = (Pagination)map.get("pagination");

@@ -35,5 +35,4 @@ public class InterceptorConfig implements WebMvcConfigurer {
 		registry.addInterceptor(boardNameInterceptor())
 						.addPathPatterns("/board/**", "/editBoard/**");
 	}
-	
 }

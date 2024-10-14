@@ -8,7 +8,6 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import edu.kh.project.board.service.BoardService;
-import jakarta.servlet.Servlet;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -60,7 +59,7 @@ public class BoardTypeInterceptor implements HandlerInterceptor{
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, 
 					ModelAndView modelAndView) throws Exception {
-		HandlerInterceptor.super.postHandle(request, response, handler, modelAndView);
+	HandlerInterceptor.super.postHandle(request, response, handler, modelAndView);
 	}
 	
 	// view 처리 후
