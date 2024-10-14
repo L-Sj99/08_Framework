@@ -20,22 +20,27 @@ pageNoList?.forEach((item, index) => {
       return;
     }
 
-    const pathname = location.pathname; // 현재 게시판 조회 요청 주소
+    // const -> let 변경
+    let pathname = location.pathname; // 현재 게시판 조회 요청 주소
 
     // 클릭된 버튼이 <<, <, >, >> 인 경우 
     // console.log(item.innerText);
     switch (item.innerText) {
       case '<<':  // 1페이지로 이동
-        location.href = pathname + "?cp=1"; break;
+        pathname += "?cp=1"; break;
       case '<':  // 이전 페이지
-        location.href = pathname + "?cp=" + pagination.prevPage; break;
+        pathname += "?cp=" + pagination.prevPage; break;
       case '>': // 다음 페이지
-        location.href = pathname + "?cp=" + pagination.nextPage; break;
+        pathname += "?cp=" + pagination.nextPage; break;
       case '>>': // 마지막 페이지
-        location.href = pathname + "?cp=" + pagination.maxPage; break;
+        pathname += "?cp=" + pagination.maxPage; break;
       default:  // 클릭한 숫자 페이지로 이동
-        location.href = pathname + "?cp=" + item.innerText;
+        pathname += "?cp=" + item.innerText;
     }
+
+    /* 검색인 경우 pathname 변수 뒤에 쿼리스트링 추가 */
+
+    
   });
 })
 
