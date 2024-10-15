@@ -48,7 +48,7 @@ boardLike.addEventListener("click", e => {
 const deleteBtn = document.querySelector("#deleteBtn");
 
 // 삭제 버튼이 존재할 때 이벤트 리스너 추가
-deleteBtn.addEventListener("click", () => {
+deleteBtn?.addEventListener("click", () => {
   const url = "/editBoard/delete"; // 요청 주소, 게시글 번호 == 전역 변수 boardNo
   
   if(confirm("정말 삭제하시겠습니까?") == false) return;
@@ -70,7 +70,6 @@ deleteBtn.addEventListener("click", () => {
 })
 
 // ------------------------------------------------------------------------------------------------------
-
 /* 수정버튼 클릭 시
  * "/editBoard/{boardCode}/{boardNo}/updateView" + POST방식, 동기식, form 태그 생성, body 태그 제일 아래 추가해서 submit()
  * 서버(Java)에서 로그인한 회원의 회원 번호를 얻어와 로그인한 회원이 작성한 글이 맞을 경우 해당 글을 상세 조회한 후 수정화면으로 전환
@@ -85,3 +84,23 @@ updateBtn?.addEventListener("click", () => {
   document.querySelector("body").append(form);
   form.submit();
 })
+
+// ------------------------------------------------------------------------------------------------------
+/* 목록으로 버튼 클릭 시 */
+const goToListBtn = document.querySelector("#goToListBtn");
+  goToListBtn.addEventListener("click", () => {
+
+    // 페이지당 게시글 수
+    const limit = 10;
+    let url = location.pathname + "/goToList?limit=" + limit;
+
+    // location.search : 쿼리스트링 반환
+    // URLSearchParams 객체 : 쿼리스트링 관리하는 객체
+    const params = new URLSearchParams(location.search);
+    if(params.get("key") !== null){ //쿼리스트링에 key가 존재하는 경우 == 검색인 경우
+      url += `&key=${params.get("key")}&query=${params.get("query")}`;
+    }
+    location.href = url;
+    // 검색이 아닌 경우 : /board/{boardCode}/{boardNo}/goToList?limit=10
+    // 검색인 경우 : /board/{boardCode}/{boardNo}/goToList?key=t&qury=검색어&limit=10
+  })

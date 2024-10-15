@@ -53,4 +53,11 @@ public interface BoardService {
 	 */
 	Map<String, Object> selectSearhList(int boardCode, int cp, Map<String, Object> paramMap);
 
+	/** 현재 게시글이 포함된 목록으로 리다이렉트
+
+	 * @param paramMap
+	 * @return cp
+	 */
+	int getCurrentPage(Map<String, Object> paramMap);
+
 }

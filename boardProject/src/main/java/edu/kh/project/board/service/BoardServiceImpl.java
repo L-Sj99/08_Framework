@@ -144,4 +144,10 @@ public class BoardServiceImpl implements BoardService{
 		
 		return map;
 	}
+
+	/* 현재 게시글이 포함된 목록으로 리다이렉트 */
+	@Override
+	public int getCurrentPage(Map<String, Object> paramMap) {
+		return mapper.getCurrentPage(paramMap);
+	}
 }

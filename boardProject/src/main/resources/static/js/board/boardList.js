@@ -39,10 +39,42 @@ pageNoList?.forEach((item, index) => {
     }
 
     /* 검색인 경우 pathname 변수 뒤에 쿼리스트링 추가 */
-
-    
+    // 즉시 실행 함수 : 변수명 중복 문제 해결 + 약간의 속도적 우위를 가지는 함수(()=>{})()
+      const params = new URLSearchParams(location.search); // URLSearchParams : 쿼리스트링 모두 얻어와 관리하는 객체
+      const key = params.get("key");
+      const query = params.get("query");
+      if (key !== null) { // 검색인 경우
+        pathname += `&key=${key}&query=${query}`;
+      }
+      location.href = pathname; // 페이지 이동
+    });
   });
-})
+// ------------------------------------------------------------
+
+/* 쿼리스트링에 검색 기록이 있을 경우 화면에 똑같이 선택/출력 하기 */
+// 즉시 실행 함수 : 변수명 중복 문제 해결 + 약간의 속도적 우위를 가지는 함수 (()=>{})()
+
+  (()=>{
+
+    // 쿼리스트링 모두 얻어와 관리하는 객체
+    const params = new URLSearchParams(location.search);
+    const key = params.get("key");
+    const query = params.get("query");
+    if(key === null) return; // 검색이 아니면 함수 종료
+  
+    // 검색어 화면에 출력하기
+    document.querySelector("#searchQuery").value = query;
+  
+    // 검색 조건 선택하기
+    const options = document.querySelectorAll("#searchKey > option");
+    options.forEach( op => {
+      // op : <option> 태그
+      if(op.value === key){ // option의 valeu와 key가 같다면
+        op.selected = true; // selected 속성 추가
+        return;
+      }
+    })
+  })();
 
 // ---------------------------
 /* 글쓰기 버튼 클릭 시 */
@@ -53,4 +85,4 @@ insertBtn?.addEventListener("click", () => {
   // 요청 주소 : /editBoard/{boardCode}/insert
   const boardCode = location.pathname.split("/")[2];
   location.href = `/editBoard/${boardCode}/insert`;
-});
+})

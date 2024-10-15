@@ -48,7 +48,15 @@
                   <!-- 상세조회 요청 주소 /board/{boardCode}/{boardNo} -->
 
                   <!-- boardCode=1 -> 수정할 예정!!! -->
-                  <a th:href="@{/board/{boardCode}/{boardNo} (boardCode=${boardCode}, boardNo=*{boardNo})}"
+                  <!-- 검색이 아닌 경우 -->
+                  <a th:unless="${param.key}"
+                    th:href="@{/board/{boardCode}/{boardNo} (boardCode=${boardCode}, boardNo=*{boardNo})}"
+                    th:text="*{boardTitle}">게시글 제목</a>
+
+                  <!-- 검색인 경우 -->
+                  <a th:if="${param.key}"
+                    th:href="@{/board/{boardCode}/{boardNo} (boardCode=${boardCode}, 
+                              boardNo=*{boardNo}, key=${param.key}, query=${param.query})}"
                     th:text="*{boardTitle}">게시글 제목</a>
 
                   <!-- 댓글 수 -->
@@ -66,7 +74,6 @@
 
                 <!-- 좋아요 수 -->
                 <td th:text="*{likeCount}">0</td>
-
               </tr>
             </th:block>
           </tbody>

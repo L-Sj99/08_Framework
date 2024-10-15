@@ -28,10 +28,10 @@ public class CategoryInterceptor implements HandlerInterceptor{
 		ServletContext application = request.getServletContext();
 		
 		if(application.getAttribute("categoryList") == null) {
-			log.info("categoryList 조회");
+//			log.info("categoryList 조회");
 			
-			List<Map<String, String>> categoryList = service.selectCategoryList();
-			log.debug(categoryList.toString());
+			List<Map<String, Object>> categoryList = service.selectCategoryList();
+//			log.debug(categoryList.toString());
 			
 			application.setAttribute("categoryList", categoryList);
 		}

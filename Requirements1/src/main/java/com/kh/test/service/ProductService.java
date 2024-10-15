@@ -5,6 +5,6 @@ import java.util.Map;
 
 public interface ProductService {
 
-	List<Map<String, String>> selectCategoryList();
+	List<Map<String, Object>> selectCategoryList();
 
 }

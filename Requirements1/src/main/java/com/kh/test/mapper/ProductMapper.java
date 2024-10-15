@@ -8,6 +8,6 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface ProductMapper {
 
-	List<Map<String, String>> selectCategoryList();
+	List<Map<String, Object>> selectCategoryList();
 
 }

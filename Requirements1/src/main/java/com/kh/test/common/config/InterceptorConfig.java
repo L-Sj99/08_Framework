@@ -20,7 +20,5 @@ public class InterceptorConfig implements WebMvcConfigurer{
 		registry.addInterceptor( categoryInterceptor() )
 		.addPathPatterns("/**")
 		.excludePathPatterns("/css/**", "/js/**", "/images/**", "/favicon.ico"); 
-		
-		
 	}
 }
