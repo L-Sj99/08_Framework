@@ -35,7 +35,6 @@ public class BoardTypeInterceptor implements HandlerInterceptor{
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		// log.info("BoardTypeInterceptor 전처리 메서드 실행");
-		
 		// 어떤 요청이 와도 header에 출력되는 게시판 메뉴를 얻어와 DB에서 Application Scope에 셋팅
 		
 		// 1) application scope 객체 얻어오기

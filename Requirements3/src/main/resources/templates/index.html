@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>게시판타입목록</title>
+	</head>
+	<body>
+		
+		<table>
+			<thead>
+				<tr>
+					<th>게시판 코드 번호</th>
+					<th>게시판 이름</th>					
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr th:each="boardType : ${application.boardTypeList}">
+					<td>[[${boardType.boardCode}]]</td>
+					<td>[[${boardType.boardName}]]</td>
+				</tr>
+			</tbody>
+		</table>	
+	</body>
+
+</html>
