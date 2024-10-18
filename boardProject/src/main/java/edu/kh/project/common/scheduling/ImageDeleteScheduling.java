@@ -27,8 +27,8 @@ public class ImageDeleteScheduling {
 	@Value("${my.board.folder-path}")
 	private String boardPath;
 	
-//	@Scheduled(cron = "0/20 * * * * *") // 0초 시작, 20초가 지날 때 마다 수행(0, 20, 40초 동작)
-	@Scheduled(cron = "0 0 * * * *") // 정각마다 수행
+	@Scheduled(cron = "0/20 * * * * *") // 0초 시작, 20초가 지날 때 마다 수행(0, 20, 40초 동작)
+//	@Scheduled(cron = "0 0 * * * *") // 정각마다 수행
 	public void imageDelete() {
 		// 1. DB에 저장되어 있는 파일명 모두 조회
 		// MEMBER.PROFILE_IMG에서 파일명, BOARD.FILE_RENAME만 조회 후 두 결과를 UNION해서 하나의 SELECT결과로 반환받기
