@@ -99,6 +99,8 @@
   <th:block th:replace="~{common/footer}"></th:block>
   <script th:inline="javascript"> // th:inline="javascript" : Java 데이터 -> JS 자료형으로 자동 변환
     const loginCheck = /*[[${session.loginMember != null}]]*/ false;
+    const memberNickname = /*[[${session.loginMember?.memberNickname}]]*/ null; // 로그인한 회원 닉네임
+    const boardDetail = /*[[${board}]]*/ null; // 상세 조회한 게시글 정보
   </script>
   <script src="/js/board/boardDetail.js"></script>
   <script src="/js/board/comment.js"></script>

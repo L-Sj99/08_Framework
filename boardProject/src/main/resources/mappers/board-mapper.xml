@@ -148,7 +148,7 @@
   <select id="getLikeCount" resultType="_int">
   	SELECT COUNT(*)
   	FROM "BOARD_LIKE"
-  	WHERE BOARD_NO = #{boardNo};
+  	WHERE BOARD_NO = #{boardNo}
   </select>
   
   <!-- DB에서 모든 게시판 종류 조회 -->

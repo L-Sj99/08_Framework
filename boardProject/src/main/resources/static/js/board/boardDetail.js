@@ -25,6 +25,13 @@ boardLike.addEventListener("click", e => {
     if(result.check === 'insert') {
       boardLike.classList.add("fa-solid");
       boardLike.classList.remove("fa-regular");
+
+      // 게시글 작성자에게 알림 보내기
+      const content = `<strong>${memberNickname}</strong>님이 <stong>${boardDetail.boardTitle}</stong> 게시글을 좋아합니다.`;
+
+      // typr, url, pkNo, content
+      sendNotification("boardLike", location.pathname, // 게시글 상세조회 페이지 주소
+        boardDetail.boardNo, content);
     } else {
       boardLike.classList.remove("fa-solid");
       boardLike.classList.add("fa-regular");
@@ -36,7 +43,6 @@ boardLike.addEventListener("click", e => {
 })
 
 // ------------------------------------------------------------------------------------------------------
-
 /* 삭제 버튼 클릭 시 
 * 삭제 버큰 클릭 시 "정말 삭제 하시겠습니까?" confirm() 띄우기
 * /editBoard/delete, POST 방식, 동기식 요청
