@@ -11,8 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import edu.kh.todolist.dto.Todo;
 import edu.kh.todolist.mapper.TodoListMapper;
 
-@Transactional // 내부 메서드 수행 후 트랜잭션 처리 수행
-							 // - 예외 발생 시 rollback, 아님 commit
+@Transactional // 내부 메서드 수행 후 트랜잭션 처리 수행 : 예외 발생 시 rollback, 아님 commit
 @Service // Service 역할임을 명시 + Bean
 public class TodoListServiceImpl implements TodoListService{
 

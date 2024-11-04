@@ -14,12 +14,9 @@ import lombok.ToString;
 @AllArgsConstructor
 @Builder
 public class Todo  {
-						
 	private int 		listNo;
 	private String 	listTitle;
 	private String 	listCheck;
 	private int 		listComplete;
 	private String 	enrollDate;
-	
-	
 }
