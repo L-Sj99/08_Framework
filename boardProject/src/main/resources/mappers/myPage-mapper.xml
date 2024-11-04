@@ -33,7 +33,7 @@
 		WHERE MEMBER_NO = #{mamberNo}
 	</update>
 	
-		<!-- 프로필 이미지 수정 -->
+	<!-- 프로필 이미지 수정 -->
 	<update id="profile">
 		UPDATE "MEMBER"
 		SET PROFILE_IMG = #{url}

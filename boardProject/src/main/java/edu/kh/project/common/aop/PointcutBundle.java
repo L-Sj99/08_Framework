@@ -10,7 +10,7 @@ import org.aspectj.lang.annotation.Pointcut;
  * public void 메서드명(){}
  * 
  * (호출)
- * @Before("PointcutBundle.메사드명()")
+ * @Before("PointcutBundle.메tj드명()")
  */
 public class PointcutBundle {
 	

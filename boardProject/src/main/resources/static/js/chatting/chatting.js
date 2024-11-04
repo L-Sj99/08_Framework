@@ -408,4 +408,18 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   })
-})
+});
+
+  /* 채팅 알림을 클릭해서 채팅 페이지로 이동한 경우 */
+  const params = new URLSearchParams(location.search);
+  const chatNo = params.get("chat-no");
+
+  if(chatNo !== null){
+    const itemList = document.querySelectorAll(".chatting-item");
+    itemList.forEach( item => {
+      if(item.getAttribute("chat-no") === chatNo){
+        item.click();
+        return;
+      }
+    })
+  }
